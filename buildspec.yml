@@ -1,5 +1,4 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
@@ -16,7 +15,6 @@ phases:
       - echo "🚀 Running static file upload for PROD"
       - chmod +x upload_static_assets.sh
       - ./upload_static_assets.sh prod
-
 artifacts:
   files:
     - '**/*'
