@@ -23,10 +23,9 @@ phases:
           echo "Unknown environment type! Please set ENVIRONMENT_TYPE to BETA or PROD."
           exit 1
         fi
-
+        
         echo "Uploading static files to s3://$BUCKET_NAME/static/"
         aws s3 sync static/ s3://$BUCKET_NAME/static/ --acl public-read
 artifacts:
   files:
     - '**/*'
-
