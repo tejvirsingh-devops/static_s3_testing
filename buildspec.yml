@@ -7,7 +7,11 @@ phases:
     commands:
       - echo "📦 Installing prerequisites"
       - git fetch --unshallow || echo "Repo already has full history"
-      - git log -2 --oneline  
+      - echo "🧠 Current working dir: $(pwd)"
+      - ls -la
+      - echo "Checking for .git directory"
+      - ls -la .git || echo ".git folder not found!"
+      #- git log -2 --oneline  
   build:
     commands:
       - echo "🚀 Running static file upload for PROD"
