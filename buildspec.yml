@@ -13,7 +13,7 @@ phases:
     commands:
       - echo "🚀 Running static file upload"
       - chmod +x upload_static_assets.sh
-      - echo "Checking environment: $ENVIRONMENT_TYPE"
+      - echo "Checking environment $ENVIRONMENT_TYPE"
       - |
         # Set the correct bucket name based on ENVIRONMENT_TYPE
         if [ "$ENVIRONMENT_TYPE" == "BETA" ]; then
