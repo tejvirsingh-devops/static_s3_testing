@@ -5,12 +5,12 @@ phases:
     runtime-versions:
       python: 3.12
     commands:
-      - echo "🐍 Python 3.12 environment setup complete"
-
-  
+      - echo "📦 Installing prerequisites"
+      - git fetch --unshallow || echo "Repo already has full history"
+      - git log -2 --oneline  
   build:
     commands:
-      - echo "🚀 Running static asset upload script"
+      - echo "🚀 Running static file upload for PROD"
       - chmod +x upload_static_assets.sh
       - ./upload_static_assets.sh prod
 
