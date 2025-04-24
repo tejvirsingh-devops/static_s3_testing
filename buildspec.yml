@@ -6,7 +6,7 @@ phases:
     commands:
       - echo "📦 Installing prerequisites"
       - git fetch --unshallow || echo "Repo already has full history"
-      - pip install -r my_django_project/requirements.txt
+      - pip install -r requirements.txt
       - ls -la .git || echo ".git folder not found!"
   build:
     commands:
