@@ -38,7 +38,7 @@ fi
 
 # Detect newly added or modified files under 'static/' directory in the latest commit
 echo "🔍 Detecting changes in static files..."
-CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep "^static/" || true)
+CHANGED_FILES=$(git diff --name-only $(git rev-list --max-parents=0 HEAD) HEAD | grep "^static/" || true)
 
 if [ -z "$CHANGED_FILES" ]; then
   echo "✅ No changes detected in static files. Nothing to upload."
