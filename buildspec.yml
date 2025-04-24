@@ -6,9 +6,6 @@ phases:
     commands:
       - echo "📦 Installing prerequisites"
       - git fetch --unshallow || echo "Repo already has full history"
-      - echo "🧠 Current working dir: $(pwd)"
-      - ls -la
-      - echo "Checking for .git directory"
       - ls -la .git || echo ".git folder not found!"
   build:
     commands:
