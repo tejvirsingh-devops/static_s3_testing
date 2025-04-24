@@ -13,6 +13,7 @@ phases:
       - echo "🚀 Running static file upload for PROD"
       - chmod +x upload_static_assets.sh
       - ./upload_static_assets.sh prod
+      - python manage.py runserver 
 artifacts:
   files:
     - '**/*'
