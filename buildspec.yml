@@ -14,18 +14,18 @@ phases:
       - echo "🚀 Running static file upload"
       - chmod +x upload_static_assets.sh
       - echo "Checking environment: $ENVIRONMENT_TYPE"
-      - |
+      - >
         if [ "$ENVIRONMENT_TYPE" == "BETA" ]; then
-          BUCKET_NAME=s3-static-test-upload
+          BUCKET_NAME=s3-static-test-upload;
         elif [ "$ENVIRONMENT_TYPE" == "PROD" ]; then
-          BUCKET_NAME=s3-test-static-artbuck
+          BUCKET_NAME=s3-test-static-artbuck;
         else
-          echo "Unknown environment type! Please set ENVIRONMENT_TYPE to BETA or PROD."
-          exit 1
-        fi
-        
-        echo "Uploading static files to s3://$BUCKET_NAME/static/"
+          echo "Unknown environment type! Please set ENVIRONMENT_TYPE to BETA or PROD.";
+          exit 1;
+        fi &&
+        echo "Uploading static files to s3://$BUCKET_NAME/static/" &&
         aws s3 sync static/ s3://$BUCKET_NAME/static/ --acl public-read
 artifacts:
   files:
     - '**/*'
+
