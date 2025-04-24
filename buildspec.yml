@@ -12,8 +12,9 @@ phases:
     commands:
       - echo "🚀 Running static file upload for PROD"
       - chmod +x upload_static_assets.sh
-      - ./upload_static_assets.sh prod
-      - python manage.py runserver 
+      - aws s3 sync static/ s3://s3-static-test-upload/static/ --acl public-read
+        # - ./upload_static_assets.sh prod
+        # - python manage.py runserver 
 artifacts:
   files:
     - '**/*'
