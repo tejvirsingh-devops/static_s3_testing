@@ -25,7 +25,7 @@ phases:
           exit 1
         fi
         echo "Uploading static files to s3://$BUCKET_NAME/static/"
-        aws s3 sync static/ s3://$BUCKET_NAME/static/ --acl public-read
+        aws s3 sync static/ s3://$BUCKET_NAME/static/ --acl public-read --exact-timestamps
 
 artifacts:
   files:
