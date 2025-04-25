@@ -25,7 +25,11 @@ phases:
           exit 1
         fi
         echo "Uploading static files to s3://$BUCKET_NAME/static/"
-        aws s3 sync static/ s3://$BUCKET_NAME/static/ --acl public-read --exact-timestamps
+        changed_files=$(git diff --name-only HEAD^ HEAD -- static/)
+        for file in $changed_files; do
+          aws s3 cp "$file" "s3://$BUCKET_NAME/$file" --acl public-read
+        done
+
 
 artifacts:
   files:
