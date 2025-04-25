@@ -25,12 +25,15 @@ phases:
           exit 1
         fi
         echo "Uploading static files to s3://$BUCKET_NAME/static/"
-        changed_files=$(git diff --name-only HEAD^ HEAD -- static/)
-        for file in $changed_files; do
-          aws s3 cp "$file" "s3://$BUCKET_NAME/$file" --acl public-read
-        done
-
-
+      - echo "Preparing comparison directory..."
+      - mkdir -p changed_files
+      - mkdir -p previous_static
+      - echo "Downloading previously deployed static files from S3..."
+      - aws s3 sync s3://$BUCKET_NAME/static/ previous_static/ || echo "No previous static files"
+      - echo "Comparing current static/ with previous_static/..."
+      - rsync -rc --compare-dest=../previous_static/ static/ changed_files/
+      - echo "Uploading only changed files to S3..."
+      - aws s3 cp changed_files/ s3://$BUCKET_NAME/static/ --recursive --acl public-read
 artifacts:
   files:
     - '**/*'
